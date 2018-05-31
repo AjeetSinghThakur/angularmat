@@ -18,6 +18,7 @@ export class CoffeeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.coffee = new Coffee();
     this.routingSubscription = this.route.params.subscribe(params => { console.log(params["id"]); });
+
     this.getLocation();
   }
   getLocation(){
