@@ -2,6 +2,7 @@ import { Coffee } from './../logic/Coffee';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { GeolocationService } from '../geolocation.service';
+import { TastingRating } from '../logic/TastingRating';
 
 @Component({
   selector: 'app-coffee',
@@ -26,6 +27,18 @@ export class CoffeeComponent implements OnInit, OnDestroy {
         this.coffee.location.longitude = location.longitude;
       });
   }
+  tastingRatingChanged(checked:boolean){
+    if(checked){
+      this.coffee.tastingRating = new TastingRating();
+    }else{
+      this.coffee.tastingRating = null;
+    }
+  }
+  cancel(){
+  }
+  save(){
+  }
+
   ngOnDestroy() {
     this.routingSubscription.unsubscribe();
   }
