@@ -12,6 +12,7 @@ import { TastingRating } from '../logic/TastingRating';
 export class CoffeeComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
     private geolocation: GeolocationService) { }
+  
   coffee: Coffee;
   types = ["Expresso", "Ristretto", "Americano"];
   routingSubscription: any;
