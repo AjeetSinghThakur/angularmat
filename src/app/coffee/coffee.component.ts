@@ -1,6 +1,7 @@
+import { DataService } from './../data.service';
 import { Coffee } from './../logic/Coffee';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute,Router } from "@angular/router";
 import { GeolocationService } from '../geolocation.service';
 import { TastingRating } from '../logic/TastingRating';
 
@@ -11,7 +12,9 @@ import { TastingRating } from '../logic/TastingRating';
 })
 export class CoffeeComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
-    private geolocation: GeolocationService) { }
+    private geolocation: GeolocationService,
+    private router: Router,
+    private data: DataService) { }
   
   coffee: Coffee;
   types = ["Expresso", "Ristretto", "Americano"];
@@ -37,8 +40,14 @@ export class CoffeeComponent implements OnInit, OnDestroy {
     }
   }
   cancel(){
+    this.router.navigate(["/"]);
   }
   save(){
+    this.data.save(this.coffee, result => {
+      if(result){
+        this.router.navigate(["/"]);
+      }
+    }); 
   }
 
   ngOnDestroy() {

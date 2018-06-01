@@ -20,13 +20,13 @@ export class DataService {
   save(coffee,callback){
      if(coffee._id){
        //It's an update
-       this.http.put(`${this.endPoint}/coffee/${coffee._id}`,coffee)
+       this.http.put(`${this.endPoint}/coffees/${coffee._id}`,coffee)
            .subscribe(response =>{
              callback(true);
            });
      }else{
        //It's an insert.
-       this.http.post(`${this.endPoint}/coffee`,coffee)
+       this.http.post(`${this.endPoint}/coffees`,coffee)
            .subscribe(response =>{
              callback(true);
            });
