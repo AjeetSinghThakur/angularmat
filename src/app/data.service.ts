@@ -1,26 +1,35 @@
 import { Coffee } from './logic/Coffee';
 import { Injectable } from '@angular/core';
 import { PlaceLocation } from './logic/PlaceLocation';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+  public endPoint = "http://localhost:3000";
 
   getList(callback){
-    //TODO: Need to be replaced with real web API call.
-    const list = [
-      new Coffee("Double Expresso",
-      "Sunny Cafe",new PlaceLocation("123 market street","San Francisco")),
-      new Coffee("Caramel Americano",
-      "Starcoffe Cafe",new PlaceLocation("Gran Via 34","Madrid"))
-    ];
-    callback(list);
+    this.http.get(`${this.endPoint}/coffees`)
+        .subscribe(response => { 
+          console.log(response); callback(response); 
+        });
   }
   save(coffee,callback){
-    //TODO: Need to be replaced with real web API call.
-    callback(true);
+     if(coffee._id){
+       //It's an update
+       this.http.put(`${this.endPoint}/coffee/${coffee._id}`,coffee)
+           .subscribe(response =>{
+             callback(true);
+           });
+     }else{
+       //It's an insert.
+       this.http.post(`${this.endPoint}/coffee`,coffee)
+           .subscribe(response =>{
+             callback(true);
+           });
+     }
   }
 }

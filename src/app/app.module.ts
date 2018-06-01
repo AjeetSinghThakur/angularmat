@@ -13,6 +13,7 @@ import { DataService } from './data.service';
 import { ListComponent } from './list/list.component';
 import { CoffeeComponent } from './coffee/coffee.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 //These things can be moved to a seperate Route module for large applications.
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forRoot(routes),
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
