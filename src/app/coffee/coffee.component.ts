@@ -17,12 +17,23 @@ export class CoffeeComponent implements OnInit, OnDestroy {
     private data: DataService) { }
   
   coffee: Coffee;
+  isTastingRatingEnabled:boolean = false;
   types = ["Expresso", "Ristretto", "Americano"];
   routingSubscription: any;
 
   ngOnInit() {
     this.coffee = new Coffee();
-    this.routingSubscription = this.route.params.subscribe(params => { console.log(params["id"]); });
+    this.routingSubscription = this.route.params.subscribe(params => { 
+      console.log(params["id"]); 
+      if(params["id"]){
+        this.data.getCoffee(params["id"],response =>{
+          this.coffee = response;
+          if(this.coffee.tastingRating){
+            this.isTastingRatingEnabled = true;
+          }
+        });
+      }
+    });
 
     this.getLocation();
   }
