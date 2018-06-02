@@ -16,6 +16,8 @@ import { ListComponent } from './list/list.component';
 import { CoffeeComponent } from './coffee/coffee.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 //These things can be moved to a seperate Route module for large applications.
 const routes: Routes = [
@@ -44,7 +46,8 @@ const routes: Routes = [
     MatToolbarModule, 
     MatCardModule,
     MatSlideToggleModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [GeolocationService,DataService],
   bootstrap: [AppComponent]
