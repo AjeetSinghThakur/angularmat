@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatButtonModule, MatIconModule, MatInputModule,
-         MatSelectModule, MatSliderModule, MatToolbarModule, 
-         MatCardModule, MatSlideToggleModule } from "@angular/material";
+import { MatButtonModule,MatIconModule,
+         MatInputModule,MatSelectModule,
+         MatSliderModule, MatToolbarModule, 
+         MatCardModule, MatSlideToggleModule,
+         MatSnackBarModule } from "@angular/material";
 import { Routes, RouterModule } from "@angular/router";
 import "hammerjs";
 
@@ -41,7 +43,8 @@ const routes: Routes = [
     MatSliderModule,
     MatToolbarModule, 
     MatCardModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSnackBarModule
   ],
   providers: [GeolocationService,DataService],
   bootstrap: [AppComponent]
